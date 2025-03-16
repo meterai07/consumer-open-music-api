@@ -1,13 +1,15 @@
 const transporter = require('../mail');
 
 const sendEmail = async (targetEmail, playlist) => {
+    const exportData = {
+        playlist: playlist
+    };
+
+    const jsonContent = JSON.stringify(exportData, null, 2);
+
     const emailBody = `
-        <h1>Your Playlist: ${playlist.name}</h1>
-        <ul>
-            ${playlist.songs
-                .map(song => `<li><strong>${song.title}</strong> by ${song.performer}</li>`)
-                .join('')}
-        </ul>
+        <h1>Your Playlist</h1>
+        <pre>${jsonContent}</pre>
     `;
 
     const mailOptions = {
