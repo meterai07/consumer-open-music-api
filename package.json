@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./src/server.js",
     "dev": "nodemon ./src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./src"
   },
   "dependencies": {
     "amqplib": "^0.10.5",
@@ -14,5 +15,10 @@
     "nodemailer": "^6.10.0",
     "nodemon": "^3.1.9",
     "pg": "^8.14.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.22.0",
+    "eslint": "^9.22.0",
+    "globals": "^16.0.0"
   }
 }
