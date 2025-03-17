@@ -7,19 +7,22 @@ const sendEmail = async (targetEmail, playlist) => {
 
     const jsonContent = JSON.stringify(exportData, null, 2);
 
-    const emailBody = `
-        <pre>${jsonContent}</pre>
-    `;
-
     const mailOptions = {
         from: process.env.SMTP_USER,
         to: targetEmail,
         subject: `Your Playlist: ${playlist.name}`,
-        html: emailBody,
+        text: 'Attached is your playlist in JSON format.',
+        attachments: [
+            {
+                filename: `${playlist.name}.json`,
+                content: jsonContent,
+                contentType: 'application/json',
+            },
+        ],
     };
 
-    await transporter.sendMail(mailOptions);
-    console.log('Email sent to', targetEmail);
+    const result = await transporter.sendMail(mailOptions);
+    console.log('Email result: ', result);
 };
 
 module.exports = { sendEmail };
