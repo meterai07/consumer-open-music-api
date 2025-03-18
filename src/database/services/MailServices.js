@@ -10,7 +10,7 @@ const sendEmail = async (targetEmail, playlist) => {
     const mailOptions = {
         from: process.env.SMTP_USER,
         to: targetEmail,
-        subject: `Your Playlist: ${playlist.name}`,
+        subject: 'Your Exported Playlist',
         text: 'Attached is your playlist in JSON format.',
         attachments: [
             {
